@@ -1,0 +1,7 @@
+DB_NAME=DBCCP1234
+DB_PORT=1234
+DB_HOST=abc.db.xyz.com
+AWS_REGION=us-east-1
+DYNAMODB_TABLE=configuration-properties
+STAGE=dev
+PORT=3000

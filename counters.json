@@ -1,0 +1,26 @@
+{
+    "total_count": {
+        "files": 25
+    },
+    "profiled": {
+        "files": 24,
+        "failed": {
+            "count": 0,
+            "files": []
+        }
+    },
+    "documents_generated": {
+        "files": 0,
+        "failed": {
+            "count": 0,
+            "files": []
+        }
+    },
+    "migrated": {
+        "files": 25,
+        "failed": {
+            "count": 0,
+            "files": []
+        }
+    }
+}

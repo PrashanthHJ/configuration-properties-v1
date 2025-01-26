@@ -1,0 +1,43 @@
+service: configuration-service
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ${env:AWS_REGION}
+  stage: ${env:STAGE}
+
+functions:
+  createConfiguration:
+    handler: src/handlers/createConfiguration.handler
+  updateConfiguration:
+    handler: src/handlers/updateConfiguration.handler
+  deleteConfiguration:
+    handler: src/handlers/deleteConfiguration.handler
+  fetchProperties:
+    handler: src/handlers/fetchProperties.handler
+  fetchProfile:
+    handler: src/handlers/fetchProfile.handler
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+custom:
+  serverless-offline:
+    httpPort: 3000
+
+resources:
+  Resources:
+    ConfigurationTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${env:DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: integrationName
+            AttributeType: S
+        KeySchema:
+          - AttributeName: integrationName
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5

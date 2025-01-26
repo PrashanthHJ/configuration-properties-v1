@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: Configuration Properties API
+  description: API for managing configuration properties
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /refresh:
+    get:
+      summary: Refresh the cache from object store
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+  /configuration:
+    post:
+      summary: Creates new properties by integration name for an API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              $ref: './examples/insertproperty_req.json'
+      responses:
+        '201':
+          description: Configuration property created
+          content:
+            application/json:
+              example:
+                $ref: './examples/insertproperty_resp.json'
+      security:
+        - client-id-required: []
+    /{integrationName}:
+      put:
+        summary: Update the configuration property based on the sequence number and integration name
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                $ref: './examples/updateproperty_req.json'
+        responses:
+          '201':
+            description: Configuration property updated
+            content:
+              application/json:
+                example:
+                  $ref: './examples/updateproperty_resp.json'
+        security:
+          - client-id-required: []
+      delete:
+        summary: Delete the property based on query parameter (configKey) passed
+        parameters:
+          - name: version
+            in: header
+            required: true
+            schema:
+              type: string
+            description: Configuration properties version number
+        responses:
+          '204':
+            description: Configuration property deleted
+          '404':
+            description: Not found
+            content:
+              application/json:
+                example:
+                  $ref: './examples/error/404.raml'
+        security:
+          - client-id-required: []
+  /{integrationName}:
+    get:
+      summary: Retrieves all properties by integration name stored in cache
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              example:
+                $ref: './examples/retrieveIntegration-property.json'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              example:
+                $ref: './examples/error/401.raml'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              example:
+                $ref: './examples/error/404.raml'
+      security:
+        - client-id-required: []
+    /profile:
+      get:
+        summary: Retrieve specific record based on the integration name and config key
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                example:
+                  $ref: './examples/retrieveproperty.json'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                example:
+                  $ref: './examples/error/401.raml'
+          '404':
+            description: Not found
+            content:
+              application/json:
+                example:
+                  $ref: './examples/error/404.raml'
+        security:
+          - client-id-required: []
+components:
+  securitySchemes:
+    client-id-required:
+      type: apiKey
+      in: header
+      name: X-Client-Id
+  schemas:
+    ConfigurationProperty:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer

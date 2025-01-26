@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: Update Property API
+  description: API for updating property details
+  version: v1
+paths:
+  /update-property:
+    put:
+      summary: Update property details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sequenceNo:
+                  type: string
+                integrationName:
+                  type: string
+                profile:
+                  type: string
+                isActive:
+                  type: boolean
+                version:
+                  type: string
+                properties:
+                  type: object
+                  properties:
+                    dbName:
+                      type: string
+                    dbPort:
+                      type: string
+                    dbHost:
+                      type: string
+      responses:
+        '201':
+          description: Property updated successfully
+          content:
+            application/json:
+              example:
+                sequenceNo: "56f75dab-34a9-4d6e-a3ad-5da863cdd0f9"
+                integrationName: "API Name"
+                profile: "Dev"
+                isActive: true
+                version: "1"
+                properties:
+                  dbName: "DBCCP1234"
+                  dbPort: "1234"
+                  dbHost: "abc.db.xyz.com"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                error: "Invalid input"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                error: "Server error"
+      security:
+        - clientId: []
+components:
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: X-Client-Id
+  schemas:
+    UpdatePropertyRequest:
+      type: object
+      properties:
+        sequenceNo:
+          type: string
+        integrationName:
+          type: string
+        profile:
+          type: string
+        isActive:
+          type: boolean
+        version:
+          type: string
+        properties:
+          type: object
+          properties:
+            dbName:
+              type: string
+            dbPort:
+              type: string
+            dbHost:
+              type: string
+servers:
+  - url: https://api.example.com/v1
+    description: Main (production) server

@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: Configuration Property API
+  description: API for managing configuration properties and inserting property details.
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /configuration-property:
+    post:
+      summary: Create a configuration property
+      responses:
+        '201':
+          description: Configuration property created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  configKey:
+                    type: string
+                  message:
+                    type: string
+              example:
+                configKey: "56f75dab-34a9-4d6e-a3ad-5da863cdd0f9"
+                message: "Configuration property created successfully."
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "Invalid input."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: "An unexpected error occurred."
+      security:
+        - client-id-required: []
+  /properties:
+    post:
+      summary: Insert property details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sequenceNo:
+                  type: string
+                  example: "56f75dab-34a9-4d6e-a3ad-5da863cdd0f9"
+                integrationName:
+                  type: string
+                  example: "API Name"
+                profile:
+                  type: string
+                  example: "Dev"
+                isActive:
+                  type: boolean
+                  example: true
+                version:
+                  type: string
+                  example: "1"
+                AWSflag:
+                  type: boolean
+                  example: true
+                properties:
+                  type: object
+                  properties:
+                    dbName:
+                      type: string
+                      example: "DBCCP1234"
+                    dbPort:
+                      type: string
+                      example: "1234"
+                    dbHost:
+                      type: string
+                      example: "abc.db.xyz.com"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              example:
+                message: "Property inserted successfully"
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      security:
+        - client-id-required: []
+components:
+  securitySchemes:
+    client-id-required:
+      type: apiKey
+      in: header
+      name: X-Client-Id

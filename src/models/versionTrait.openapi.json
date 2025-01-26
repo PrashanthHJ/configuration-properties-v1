@@ -1,0 +1,38 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Version Trait",
+    "description": "Trait for version header in API requests"
+  },
+  "components": {
+    "headers": {
+      "version": {
+        "description": "version of the record in database",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "paths": {},
+  "servers": [
+    {
+      "url": "https://{baseUrl}",
+      "variables": {
+        "baseUrl": {
+          "default": "api.example.com"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "client-id-required": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "client-id"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+    "count": 25,
+    "base_path": "/Users/ramub/AIAssistWork/configuration-properties-api",
+    "files": [
+        "/pom.xml",
+        "/src/main/resources/log4j2.xml",
+        "/src/main/resources/dev.properties",
+        "/src/main/resources/api/configuration-properties-api.raml",
+        "/src/main/resources/api/traits/configKey.raml",
+        "/src/main/resources/api/traits/version.raml",
+        "/src/main/resources/api/traits/client-id.raml",
+        "/src/main/resources/api/traits/intName.raml",
+        "/src/main/resources/api/examples/insertproperty_resp.json",
+        "/src/main/resources/api/examples/updateproperty_resp.json",
+        "/src/main/resources/api/examples/retrieveproperty.json",
+        "/src/main/resources/api/examples/insertproperty_req.json",
+        "/src/main/resources/api/examples/retrieveIntegration-property.json",
+        "/src/main/resources/api/examples/clearCache.json",
+        "/src/main/resources/api/examples/updateproperty_req.json",
+        "/src/main/resources/api/examples/deleteprop_resp.json",
+        "/src/main/resources/api/examples/error/401.raml",
+        "/src/main/resources/api/examples/error/404.raml",
+        "/src/main/java/utils/Myutils.java",
+        "/src/main/mule/global.xml",
+        "/src/main/mule/configuration-properties-objectstore.xml",
+        "/src/main/mule/configuration-properties-queues.xml",
+        "/src/main/mule/configuration-properties-api.xml",
+        "/src/main/mule/configuration-properties-database.xml",
+        "/src/main/mule/configuration-properties-impl.xml"
+    ]
+}

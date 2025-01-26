@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Error API
+  description: API for handling error responses
+  version: 1.0.0
+paths:
+  /error:
+    get:
+      summary: Get error response
+      responses:
+        '404':
+          description: Record Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Record Not Found
+security:
+  - clientId: []
+servers:
+  - url: https://api.example.com
+    description: Main (production) server

@@ -1,0 +1,130 @@
+{
+    "/pom.xml": [
+        "package.json",
+        "serverless.yml"
+    ],
+    "/src/main/resources/log4j2.xml": [
+        "src/utils/logger.ts"
+    ],
+    "/src/main/resources/api/configuration-properties-api.raml": [
+        "src/config/configuration-properties-api.yaml"
+    ],
+    "/src/main/resources/api/traits/configKey.raml": [
+        "src/config/openapi.yaml"
+    ],
+    "/src/main/resources/api/traits/version.raml": [
+        "src/models/versionTrait.openapi.json"
+    ],
+    "/src/main/resources/api/traits/client-id.raml": [
+        "src/config/openapi.yaml"
+    ],
+    "/src/main/resources/api/traits/intName.raml": [
+        "src/config/openapi.yaml"
+    ],
+    "/src/main/resources/api/examples/insertproperty_resp.json": [
+        "config/openapi.yaml"
+    ],
+    "/src/main/resources/api/examples/updateproperty_resp.json": [
+        "src/openapi/updateproperty_resp.yaml"
+    ],
+    "/src/main/resources/api/examples/retrieveproperty.json": [
+        ".env",
+        "package.json",
+        "tsconfig.json",
+        ".prettierrc",
+        ".prettierignore",
+        ".eslintrc.json"
+    ],
+    "/src/main/resources/api/examples/insertproperty_req.json": [
+        "config/.env",
+        "config/openapi.yaml"
+    ],
+    "/src/main/resources/api/examples/retrieveIntegration-property.json": [
+        "src/config/openapi.yaml"
+    ],
+    "/src/main/resources/api/examples/clearCache.json": [
+        "src/config/openapi.yaml"
+    ],
+    "/src/main/resources/api/examples/updateproperty_req.json": [
+        "src/models/updateproperty_req.openapi.yaml"
+    ],
+    "/src/main/resources/api/examples/deleteprop_resp.json": [
+        "src/config/openapi.yaml"
+    ],
+    "/src/main/resources/api/examples/error/401.raml": [
+        "src/config/.env",
+        "src/models/openapi.yaml"
+    ],
+    "/src/main/resources/api/examples/error/404.raml": [
+        "src/config/.env",
+        "src/models/errorResponse.ts",
+        "src/openapi/error.yaml"
+    ],
+    "/src/main/java/utils/Myutils.java": [
+        "src/utils/uuidGenerator.ts"
+    ],
+    "/src/main/mule/global.xml": [
+        "config/dev.env",
+        "serverless.yml"
+    ],
+    "/src/main/mule/configuration-properties-objectstore.xml": [
+        "src/utils/objectStoreUtils.ts"
+    ],
+    "/src/main/mule/configuration-properties-queues.xml": [
+        "src/routes/retrieveQueue.ts",
+        "src/routes/insertQueue.ts",
+        "src/routes/updateQueue.ts",
+        "src/routes/deleteQueue.ts",
+        "src/service/fetchPropertiesFromOS.ts",
+        "src/service/configurationInsert.ts",
+        "src/service/configurationUpdate.ts",
+        "src/service/configurationDelete.ts",
+        "src/utils/errorHandler.ts",
+        "src/utils/objectStore.ts",
+        "src/index.ts",
+        "package.json",
+        ".env",
+        "serverless.yml"
+    ],
+    "/src/main/mule/configuration-properties-api.xml": [
+        "src/handlers/schedulerHandler.ts",
+        "src/routes/apiRoutes.ts",
+        "src/handlers/apiHandlers.ts",
+        "src/services/dbService.ts",
+        "src/utils/transformUtils.ts",
+        "src/utils/logger.ts",
+        "src/index.ts",
+        "package.json",
+        ".env",
+        "serverless.yml"
+    ],
+    "/src/main/mule/configuration-properties-database.xml": [
+        "src/handlers/putFlowHandler.ts",
+        "src/handlers/retrieveFromDBHandler.ts",
+        "src/handlers/updateInDBHandler.ts",
+        "src/handlers/deleteFromDBHandler.ts",
+        "src/services/dynamodb.ts",
+        "src/utils/logger.ts",
+        "src/utils/errorHandler.ts",
+        "src/utils/transform.ts",
+        "serverless.yml"
+    ],
+    "/src/main/mule/configuration-properties-impl.xml": [
+        "src/utils/uuidGenerator.ts",
+        "src/utils/dataTransform.ts",
+        "src/utils/errorHandler.ts",
+        "src/service/configurationService.ts",
+        "src/service/configurationService.ts",
+        "src/service/configurationService.ts",
+        "src/service/configurationService.ts",
+        "src/service/configurationService.ts",
+        "src/utils/logger.ts",
+        "src/config/.env",
+        "src/config/serverless.yml",
+        "src/package.json",
+        "src/tsconfig.json",
+        "src/.prettierrc",
+        "src/.prettierignore",
+        "src/.eslintrc.json"
+    ]
+}

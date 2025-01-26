@@ -1,0 +1,271 @@
+openapi: 3.0.0
+info:
+  title: API with ConfigKey Trait and Client ID Trait
+  description: This API includes a reusable component for the configKey header and enforces the presence of client_id and client_secret headers.
+  version: v1
+paths:
+  /example:
+    get:
+      summary: Example endpoint
+      parameters:
+        - name: intergrationName
+          in: query
+          description: Name of interface
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid request
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: An error occurred
+      security:
+        - client-id-required: []
+  /integration-properties:
+    get:
+      summary: Retrieve integration properties
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IntegrationProperty'
+              example:
+                - integrationName: API1
+                  profile: Dev
+                - integrationName: API1
+                  profile: Prod
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid request
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+  /clear-cache:
+    get:
+      summary: Clear Cache
+      operationId: clearCache
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: success
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid request
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Server error
+  /property/{id}:
+    delete:
+      summary: Delete a property
+      description: Deletes a property by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the property to delete
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Property deleted successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid property ID
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: An unexpected error occurred
+      security:
+        - client-id-required: []
+components:
+  headers:
+    configKey:
+      description: unique uuid per integration profile
+      required: true
+      schema:
+        type: string
+      examples:
+        example1:
+          value: "123e4567-e89b-12d3-a456-426614174000"
+  securitySchemes:
+    clientIdHeader:
+      type: apiKey
+      in: header
+      name: client_id
+    clientSecretHeader:
+      type: apiKey
+      in: header
+      name: client_secret
+    client-id-required:
+      type: apiKey
+      in: header
+      name: X-Client-Id
+    clientIdRequired:
+      type: apiKey
+      in: header
+      name: X-Client-Id
+  responses:
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Invalid request parameters."
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "An unexpected error occurred."
+    UnauthorizedError:
+      description: Unauthorized - Missing or invalid client_id or client_secret
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Unauthorized access
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: An unexpected error occurred
+  schemas:
+    CommonResources:
+      type: object
+      properties:
+        exampleProperty:
+          type: string
+    IntegrationProperty:
+      type: object
+      properties:
+        integrationName:
+          type: string
+        profile:
+          type: string
+    DeletePropertyResponse:
+      type: object
+      properties:
+        Message:
+          type: string
+          example: success
+servers:
+  - url: https://api.example.com
+    description: Main (production) server
+    variables:
+      basePath:
+        default: /v1
+        description: Base path for API endpoints
+  - url: https://staging-api.example.com
+    description: Staging server
+  - url: https://dev-api.example.com
+    description: Development server
+  - url: http://localhost:3000
+    description: Local server
+    variables:
+      port:
+        default: "3000"
+        enum:
+          - "3000"
+          - "3001"
+          - "3002"
+  - url: https://{stage}-api.example.com
+    description: Dynamic server
+    variables:
+      stage:
+        default: "dev"
+        enum:
+          - "dev"
+          - "staging"
+          - "prod"
+  - url: https://api.example.com/v1
+security:
+  - clientIdHeader: []
+  - clientSecretHeader: []
+  - client-id-required: []
+  - clientIdRequired: []
