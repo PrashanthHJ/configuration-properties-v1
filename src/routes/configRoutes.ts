@@ -9,8 +9,8 @@ import { updateConfig } from "../controllers/updateConfigController";
 const router = Router();
 
 router.get("/ping", ping);
-router.get("/config/:sequenceNo", getConfig);
 router.get("/configs", getAllConfigs);
+router.get("/config/:sequenceNo", getConfig);
 router.post("/config", createConfig);
 router.put("/config/:sequenceNo", updateConfig);
 router.delete("/config/:sequenceNo", deleteConfig);

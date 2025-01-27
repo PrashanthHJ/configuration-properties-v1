@@ -8,5 +8,6 @@ export async function deleteConfigProperties(sequenceNo: string) {
     TableName: tableName,
     Key: { sequenceNo: { S: sequenceNo } },
   });
+
   return await documentClient.send(command);
 }
