@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "5cb24155-d13c-4e2b-96b0-aa8189c67ce1",
+		"name": "Configuration Properties",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41560222"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "configs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/configs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"configs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "configs/:sequenceNo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/config/12345",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"config",
+						"12345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "configs/:sequenceNo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/config/12345",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"config",
+						"12345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"sequenceNo\": \"12345\",\n        \"AWSFlag\": false,\n        \"integrationName\": \"12345\",\n        \"profile\": \"Dev\",\n        \"isActive\": true,\n        \"version\": 1,\n        \"properties\": {\n            \"dbPort\": 12345,\n            \"dbHost\": \"abc4.db.xyz.com\",\n            \"dbName\": \"DBCCP12345\"\n        }\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/config",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config/:sequenceNo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"AWSFlag\": false,\n        \"integrationName\": \"1234500\",\n        \"profile\": \"Dev\",\n        \"isActive\": true,\n        \"version\": 1,\n        \"properties\": {\n            \"dbPort\": 1234500,\n            \"dbHost\": \"abc00.db.xyz.com\",\n            \"dbName\": \"DBCCP1234500\"\n        }\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/config/12345",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"config",
+						"12345"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
